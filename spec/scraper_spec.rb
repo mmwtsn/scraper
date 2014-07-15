@@ -10,11 +10,16 @@ describe Scraper do
       expect(result).to be_an_instance_of(Array)
     end
 
-    # Issa's mock haiku web page contains 'haiku' four times, two of which are lowercase
-    it 'ignores case of query' do
+    # Issa's mock haiku web page contains 'haiku' twice
+    it 'returns all line matches' do
       result = Scraper.search_for('haiku', 'http://issa-haiku.org/snail.html')
 
-      expect(result.length).to eq(4)
+      expect(result.length).to eq(2)
+    end
+
+    # Issa's mock haiku web page contains 'haiku' twice and 'Haiku' twice
+    it 'ignores case when requested' do
+      result = Scraper.search_for('haiku', 'http://issa-haiku.org/snail.html', ignore_case: true)
     end
 
     # Issa's snail haiku does not contain 'snake'
