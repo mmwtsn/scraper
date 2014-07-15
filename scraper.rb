@@ -6,14 +6,17 @@ module Scraper
   require 'open-uri'
 
   def self.search_for(query, location)
-    result = false
+    result = []
 
     open(location) do |f|
       f.each do |line|
-        if /#{query}/ =~ line
-          result = true
-          break
+        if /#{query}/i =~ line
+          result << f.lineno
         end
+      end
+
+      if result.empty?
+        result = false
       end
 
       return result
