@@ -19,7 +19,7 @@ module Scraper
         result = false
       end
 
-      return result
+      result
     end
 
   end
