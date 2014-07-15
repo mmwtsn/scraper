@@ -20,6 +20,8 @@ describe Scraper do
     # Issa's mock haiku web page contains 'haiku' twice and 'Haiku' twice
     it 'ignores case when requested' do
       result = Scraper.search_for('haiku', 'http://issa-haiku.org/snail.html', ignore_case: true)
+
+      expect(result.length).to eq(4)
     end
 
     # Issa's snail haiku does not contain 'snake'
