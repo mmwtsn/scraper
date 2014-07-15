@@ -10,7 +10,7 @@ describe Scraper do
       expect(result).to be_an_instance_of(Array)
     end
 
-    # Issa's mock haiku web page contains 'haiku' three times, two of which are lowercase
+    # Issa's mock haiku web page contains 'haiku' four times, two of which are lowercase
     it 'ignores case of query' do
       result = Scraper.search_for('haiku', 'http://issa-haiku.org/snail.html')
 
