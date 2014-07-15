@@ -4,10 +4,17 @@ describe Scraper do
   describe '.search_for(query, location)' do
 
     # Issa's snail haiku contains 'snail'
-    it 'returns true when found' do
+    it 'returns an array of line numbers' do
       result = Scraper.search_for('snail', 'http://issa-haiku.org/snail.html')
 
-      expect(result).to be_true
+      expect(result).to be_an_instance_of(Array)
+    end
+
+    # Issa's snail haiku contains 'snlowly' twice
+    it 'returns correct number of matches' do
+      result = Scraper.search_for('slowly', 'http://issa-haiku.org/snail.html')
+
+      expect(result.length).to eq(2)
     end
 
     # Issa's snail haiku does not contain 'snake'
