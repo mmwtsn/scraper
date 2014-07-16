@@ -6,7 +6,8 @@ module Scraper
   require 'open-uri'
 
   def self.search_for(query, location, options = {})
-    result = []
+    result = {}
+    result[location] = []
 
     if options[:ignore_case]
       regexp = /#{query}/i
@@ -17,11 +18,11 @@ module Scraper
     open(location) do |f|
       f.each do |line|
         if regexp =~ line
-          result << f.lineno
+          result[location] << f.lineno
         end
       end
 
-      if result.empty?
+      if result[location].empty?
         result = false
       end
 
