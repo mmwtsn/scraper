@@ -5,12 +5,27 @@ Bundler.require
 module Scraper
   require 'open-uri'
 
-  def self.check(query, location, options = {})
+  def self.search_for(query, location, options = {})
+    result = {}
+    result[location] = []
+
+    check(query, location, result, options)
+  end
+
+  private
+
+  def self.build_regexp(query, options = {})
     if options[:ignore_case]
       regexp = /#{query}/i
     else
       regexp = /#{query}/
     end
+
+    regexp
+  end
+
+  def self.check(query, location, result, options = {})
+    regexp = build_regexp(query, options)
 
     open(location) do |f|
       f.each do |line|
@@ -25,12 +40,5 @@ module Scraper
 
       result
     end
-  end
-
-  def self.search_for(query, location, options = {})
-    result = {}
-    result[location] = []
-
-    check(query, location, options)
   end
 end
