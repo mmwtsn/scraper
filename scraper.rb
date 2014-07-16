@@ -32,6 +32,14 @@ module Scraper
     result
   end
 
+  def self.build_location(location)
+    if location.instance_of?(String)
+      location = [location]
+    end
+
+    location
+  end
+
   def self.check(query, location, result, options = {})
     regexp = build_regexp(query, options)
 
