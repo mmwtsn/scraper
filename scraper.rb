@@ -5,10 +5,7 @@ Bundler.require
 module Scraper
   require 'open-uri'
 
-  def self.search_for(query, location, options = {})
-    result = {}
-    result[location] = []
-
+  def self.check(query, location, options = {})
     if options[:ignore_case]
       regexp = /#{query}/i
     else
@@ -28,7 +25,12 @@ module Scraper
 
       result
     end
-
   end
 
+  def self.search_for(query, location, options = {})
+    result = {}
+    result[location] = []
+
+    check(query, location, options)
+  end
 end
