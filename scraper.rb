@@ -24,6 +24,14 @@ module Scraper
     regexp
   end
 
+  def self.build_result(result, location)
+    if result[location].empty?
+      result = false
+    end
+
+    result
+  end
+
   def self.check(query, location, result, options = {})
     regexp = build_regexp(query, options)
 
@@ -33,12 +41,8 @@ module Scraper
           result[location] << f.lineno
         end
       end
-
-      if result[location].empty?
-        result = false
-      end
-
-      result
     end
+
+    result = build_result(result, location)
   end
 end
