@@ -40,9 +40,7 @@ module Scraper
     location
   end
 
-  def self.check(query, location, result, options = {})
-    regexp = build_regexp(query, options)
-
+  def self.open_location(location, regexp, result)
     open(location) do |f|
       f.each do |line|
         if regexp =~ line
@@ -50,6 +48,12 @@ module Scraper
         end
       end
     end
+  end
+
+  def self.check(query, location, result, options = {})
+    regexp = build_regexp(query, options)
+
+    open_location(location, regexp, result)
 
     result = build_result(result, location)
   end
