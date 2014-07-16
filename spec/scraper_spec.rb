@@ -8,7 +8,7 @@ describe Scraper do
     it 'returns an array' do
       result = Scraper.search_for('snail', url)
 
-      expect(result).to be_an_instance_of(Array)
+      expect(result).to be_an_instance_of(Hash)
     end
 
     # Issa's mock haiku web page contains 'haiku' twice
