@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe Scraper do
   describe '.search_for(query, location)' do
-    let(:url) {'http://issa-haiku.org/snail.html'}
+    let(:url)  {'http://issa-haiku.org/snail.html'}
+    let(:urls) {[
+      'http://issa-haiku.org/snail.html',
+      'http://issa-haiku.org/winter.html'
+    ]}
 
     # Issa's snail haiku contains 'snail'
     it 'returns a hash when found' do
@@ -31,6 +35,11 @@ describe Scraper do
       result = Scraper.search_for('haiku', url, ignore_case: true)
 
       expect(result[url].length).to eq(4)
+    end
+
+    # search_for() should accept a string or an array for its locations param
+    it 'handles multiple locations' do
+      result = Scraper.search_for('soba', urls)
     end
   end
 end
