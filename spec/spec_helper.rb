@@ -1,7 +1,8 @@
 require 'webmock/rspec'
 require_relative '../scraper'
 
-body = IO.read('./spec/support/issa-haiku.html')
+snail  = IO.read('./spec/support/issa-snail.html')
+winter = IO.read('./spec/support/issa-winter.html')
 
 # Configure RSpec
 RSpec.configure do |config|
@@ -12,8 +13,13 @@ RSpec.configure do |config|
 
   # Stub external HTTP requests with WebMock
   config.before(:each) do
-    stub_request(:get, /issa-haiku.org/).
-      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-      to_return(status: 200, body: body, headers: {})
+    haiku_request("snail", snail)
+    haiku_request("winter", winter)
   end
+end
+
+def haiku_request(haiku, body)
+  stub_request(:get, %r(issa-haiku.org/#{haiku})).
+    with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+    to_return(status: 200, body: body, headers: {})
 end
