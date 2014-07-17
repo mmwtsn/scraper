@@ -24,14 +24,6 @@ module Scraper
     regexp
   end
 
-  def self.build_result(result, location)
-    if result[location].empty?
-      result = false
-    end
-
-    result
-  end
-
   def self.build_location(location)
     if location.instance_of?(String)
       location = [location]
@@ -41,18 +33,33 @@ module Scraper
   end
 
   def self.open_location(location, regexp, result)
-    open(location) do |f|
-      f.each do |line|
-        if regexp =~ line
-          result[location] << f.lineno
+    location.each do |loc|
+
+      open(loc) do |f|
+        f.each do |line|
+          if regexp =~ line
+            result[loc] << f.lineno
+          end
         end
       end
+
     end
+  end
+
+  def self.build_result(result, location)
+    location.each do |loc|
+      if result[loc].empty?
+        result = false
+      end
+    end
+
+    result
   end
 
   def self.check(query, location, result, options = {})
     regexp = build_regexp(query, options)
 
+    location = build_location(location)
     open_location(location, regexp, result)
 
     result = build_result(result, location)
