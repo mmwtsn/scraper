@@ -1,45 +1,13 @@
 require 'spec_helper'
 
 describe Scraper do
-  describe '.search_for(query, location)' do
-    let(:url)  {'http://issa-haiku.org/snail.html'}
-    let(:urls) {[
-      'http://issa-haiku.org/snail.html',
-      'http://issa-haiku.org/winter.html'
-    ]}
-
-    # Issa's snail haiku contains 'snail'
-    it 'returns a hash when found' do
-      result = Scraper.search_for('snail', url)
-
-      expect(result).to be_an_instance_of(Hash)
-    end
-
-    # Issa's snail haiku does not contain 'snake'
-    it 'returns false when not found' do
-      result = Scraper.search_for('snake', url)
-
-      expect(result).to be_false
-      expect(result).to_not be_nil # Ensure RSpec does not report a false positive
-    end
-
-    # Issa's mock haiku web page contains 'haiku' twice
-    it 'returns all line matches under location key' do
-      result = Scraper.search_for('haiku', url)
-
-      expect(result[url].length).to eq(2)
-    end
-
-    # Issa's mock haiku web page contains 'haiku' twice and 'Haiku' twice
-    it 'ignores case when requested' do
-      result = Scraper.search_for('haiku', url, ignore_case: true)
-
-      expect(result[url].length).to eq(4)
-    end
-
-    # search_for() should accept a string or an array for its locations param
-    it 'handles multiple locations' do
-      result = Scraper.search_for('soba', urls)
-    end
+  before(:each) do
+    @scraper = Scraper.new('snail')
   end
+
+  let(:url)  {'http://issa-haiku.org/snail.html'}
+  let(:urls) {[
+    'http://issa-haiku.org/snail.html',
+    'http://issa-haiku.org/winter.html'
+  ]}
 end
