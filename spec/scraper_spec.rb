@@ -29,10 +29,12 @@ describe Scraper do
 
   describe '#found' do
     it 'is true when found' do
+      pending
       expect(@scraper.found).to be_true
     end
 
     it 'is false when not found' do
+      pending
       expect(@scraper.found).to     be_false
       expect(@scraper.found).to_not be_nil # no false positivies if nil
     end
