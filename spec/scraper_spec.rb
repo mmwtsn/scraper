@@ -41,8 +41,8 @@ describe Scraper do
   end
 
   describe '#results' do
-    it 'returns an array' do
-      expect(@scraper.results).to be_an_instance_of(Array)
+    it 'returns a hash' do
+      expect(@scraper.results).to be_an_instance_of(Hash)
     end
   end
 end
