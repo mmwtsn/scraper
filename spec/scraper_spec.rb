@@ -45,4 +45,15 @@ describe Scraper do
       expect(@scraper.results).to be_an_instance_of(Hash)
     end
   end
+
+  describe '#found?' do
+    it 'returns a bool' do
+      expect(@scraper.found?).to     be_false
+      expect(@scraper.found?).to_not be_nil
+    end
+
+    it 'is an alias of #found' do
+      expect(@scraper.found?).to eq(@scraper.found)
+    end
+  end
 end
