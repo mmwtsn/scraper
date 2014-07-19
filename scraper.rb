@@ -12,6 +12,6 @@ class Scraper
   def initialize(query)
     @query   = query
     @found   = false
-    @results = []
+    @results = {}
   end
 end
