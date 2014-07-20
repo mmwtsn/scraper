@@ -7,53 +7,52 @@ describe Scraper do
     'http://issa-haiku.org/winter.html'
   ]}
 
-  before(:each) do
-    @scraper = Scraper.new('snail')
-  end
+  let(:query) {'snail'}
+  subject(:scraper) { Scraper.new(query) }
 
   describe '#new' do
     it 'returns a scraper object' do
-      expect(@scraper).to be_an_instance_of(Scraper)
+      expect(scraper).to be_an_instance_of(Scraper)
     end
   end
 
   describe '#query' do
     it 'accepts a string' do
-      expect(@scraper.query).to be_an_instance_of(String)
+      expect(scraper.query).to be_an_instance_of(String)
     end
 
     it 'returns the query' do
-      expect(@scraper.query).to eq('snail')
+      expect(scraper.query).to eq(query)
     end
   end
 
   describe '#found' do
     it 'is true when found' do
       pending
-      expect(@scraper.found).to be_true
+      expect(scraper.found).to be_true
     end
 
     it 'is false when not found' do
       pending
-      expect(@scraper.found).to     be_false
-      expect(@scraper.found).to_not be_nil # no false positivies if nil
+      expect(scraper.found).to     be_false
+      expect(scraper.found).to_not be_nil # no false positivies if nil
     end
   end
 
   describe '#results' do
     it 'returns a hash' do
-      expect(@scraper.results).to be_an_instance_of(Hash)
+      expect(scraper.results).to be_an_instance_of(Hash)
     end
   end
 
   describe '#found?' do
     it 'is an alias of #found' do
-      expect(@scraper.found?).to eq(@scraper.found)
+      expect(scraper.found?).to eq(scraper.found)
     end
 
     it 'returns a bool' do
-      expect(@scraper.found?).to     be_false
-      expect(@scraper.found?).to_not be_nil
+      expect(scraper.found?).to     be_false
+      expect(scraper.found?).to_not be_nil
     end
   end
 end
