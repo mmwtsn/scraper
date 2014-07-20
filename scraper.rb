@@ -22,8 +22,7 @@ class Scraper
     result = []
 
     check_url(regexp, url, result)
-
-    format_result(result)
+    update_and_format_results(result, url)
   end
 
   private
@@ -46,5 +45,10 @@ class Scraper
     else
       result
     end
+  end
+
+  def update_and_format_results(result, url)
+    @results[url] = result
+    format_result(result)
   end
 end
