@@ -28,16 +28,6 @@ class Scraper
 
   private
 
-  def format_result(result)
-    if result.empty?
-      result = false
-    elsif result.length == 1
-      result = result[0]
-    else
-      result
-    end
-  end
-
   def check_url(regexp, url, result)
     open(url) do |f|
       f.each do |line|
@@ -45,6 +35,16 @@ class Scraper
           result << f.lineno
         end
       end
+    end
+  end
+
+  def format_result(result)
+    if result.empty?
+      result = false
+    elsif result.length == 1
+      result = result[0]
+    else
+      result
     end
   end
 end
