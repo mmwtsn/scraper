@@ -48,7 +48,9 @@ class Scraper
   end
 
   def update_and_format_results(result, url)
+    result = format_result(result)
     @results[url] = result
-    format_result(result)
+
+    result
   end
 end
