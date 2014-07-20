@@ -68,20 +68,20 @@ describe Scraper do
     end
 
     context 'with one result' do
-      it 'returns a string' do
-        let(:query) { 'fuji' }
+      let(:query) { 'fuji' }
 
+      it 'returns an integer' do
         result = scraper.scrape(url)
-        expect(result).to be_a(String)
+        expect(result).to be_an(Integer)
       end
     end
 
     context 'with many results' do
-      let(:query) { 'slowly' }
+      let(:query) { 'haiku' }
 
       it 'returns an array of integers' do
         results = scraper.scrape(url)
-        expect(result).to be_an(Array)
+        expect(results).to be_an(Array)
       end
     end
   end
