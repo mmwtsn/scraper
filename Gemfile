@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rspec'
-gem 'webmock'
 gem 'colorize'
+
+group :test do
+  gem 'webmock'
+end
