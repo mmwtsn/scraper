@@ -21,20 +21,30 @@ class Scraper
     regexp = /#{query}/i
     result = []
 
-    open(url) do |f|
-      f.each do |line|
-        if regexp =~ line
-          result << f.lineno
-        end
-      end
-    end
+    check_url(regexp, url, result)
 
+    format_result(result)
+  end
+
+  private
+
+  def format_result(result)
     if result.empty?
       result = false
     elsif result.length == 1
       result = result[0]
     else
       result
+    end
+  end
+
+  def check_url(regexp, url, result)
+    open(url) do |f|
+      f.each do |line|
+        if regexp =~ line
+          result << f.lineno
+        end
+      end
     end
   end
 end
