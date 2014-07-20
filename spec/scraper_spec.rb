@@ -59,6 +59,8 @@ describe Scraper do
   describe '#scrape' do
     subject(:result) { scraper.scrape(url) }
 
+    after(:each) { expect(result).to eq(scraper.results[url]) }
+
     context 'with no results' do
       let(:query) { 'null' }
 
