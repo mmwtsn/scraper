@@ -56,10 +56,33 @@ describe Scraper do
     end
   end
 
-  describe '#check' do
-    it 'returns an Array of Integers' do
-      results = scraper.check
-      expect(results).to be_an(Array)
+  describe '#scrape' do
+    context 'with no results' do
+      let(:query) { 'null' }
+
+      it 'returns false' do
+        result = scraper.scrape(url)
+        expect(result).to     be_false
+        expect(result).to_not be_nil
+      end
+    end
+
+    context 'with one result' do
+      it 'returns a string' do
+        let(:query) { 'fuji' }
+
+        result = scraper.scrape(url)
+        expect(result).to be_a(String)
+      end
+    end
+
+    context 'with many results' do
+      let(:query) { 'slowly' }
+
+      it 'returns an array of integers' do
+        results = scraper.scrape(url)
+        expect(result).to be_an(Array)
+      end
     end
   end
 end
