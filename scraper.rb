@@ -18,8 +18,8 @@ class Scraper
   end
 
   def scrape(url)
-    regexp = /#{query}/i
     result = []
+    regexp = /#{query}/i
 
     check_url(regexp, url, result)
     update_and_format_results(result, url)
