@@ -57,11 +57,12 @@ describe Scraper do
   end
 
   describe '#scrape' do
+    subject(:result) { scraper.scrape(url) }
+
     context 'with no results' do
       let(:query) { 'null' }
 
       it 'returns false' do
-        result = scraper.scrape(url)
         expect(result).to     be_false
         expect(result).to_not be_nil
       end
@@ -71,7 +72,6 @@ describe Scraper do
       let(:query) { 'fuji' } # matched once
 
       it 'returns an integer' do
-        result = scraper.scrape(url)
         expect(result).to be_an(Integer)
       end
     end
@@ -80,12 +80,10 @@ describe Scraper do
       let(:query) { 'haiku' } # matched four times
 
       it 'returns an array of integers' do
-        results = scraper.scrape(url)
-        expect(results).to be_an(Array)
+        expect(result).to be_an(Array)
       end
 
       it 'returns a length of 4' do
-        result = scraper.scrape(url)
         expect(result.length).to eq(4)
       end
     end
