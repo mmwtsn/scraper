@@ -12,13 +12,13 @@ describe Scraper do
 
   describe '#new' do
     it 'returns a scraper object' do
-      expect(scraper).to be_an_instance_of(Scraper)
+      expect(scraper).to be_a(Scraper)
     end
   end
 
   describe '#query' do
     it 'accepts a string' do
-      expect(scraper.query).to be_an_instance_of(String)
+      expect(scraper.query).to be_a(String)
     end
 
     it 'returns the query' do
@@ -41,7 +41,7 @@ describe Scraper do
 
   describe '#results' do
     it 'returns a hash' do
-      expect(scraper.results).to be_an_instance_of(Hash)
+      expect(scraper.results).to be_a(Hash)
     end
   end
 
