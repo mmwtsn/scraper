@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Scraper do
+  let(:query) {'snail'}
   let(:url)   {'http://issa-haiku.org/snail.html'}
   let(:urls)  {[
     'http://issa-haiku.org/snail.html',
     'http://issa-haiku.org/winter.html'
   ]}
 
-  let(:query) {'snail'}
   subject(:scraper) { Scraper.new(query) }
 
   describe '#new' do
