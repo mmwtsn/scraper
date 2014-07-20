@@ -55,4 +55,11 @@ describe Scraper do
       expect(scraper.found?).to_not be_nil
     end
   end
+
+  describe '#check' do
+    it 'returns an Array of Integers' do
+      results = scraper.check
+      expect(results).to be_an(Array)
+    end
+  end
 end
