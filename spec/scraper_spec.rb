@@ -68,7 +68,7 @@ describe Scraper do
     end
 
     context 'with one result' do
-      let(:query) { 'fuji' }
+      let(:query) { 'fuji' } # matched once
 
       it 'returns an integer' do
         result = scraper.scrape(url)
@@ -77,11 +77,16 @@ describe Scraper do
     end
 
     context 'with many results' do
-      let(:query) { 'haiku' }
+      let(:query) { 'haiku' } # matched four times
 
       it 'returns an array of integers' do
         results = scraper.scrape(url)
         expect(results).to be_an(Array)
+      end
+
+      it 'returns a length of 4' do
+        result = scraper.scrape(url)
+        expect(result.length).to eq(4)
       end
     end
   end
