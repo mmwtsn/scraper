@@ -37,16 +37,22 @@ describe Scraper do
     end
   end
 
-  describe '#found' do
-    it 'is true when found' do
-      pending
-      expect(scraper.found).to be_true
+  describe '#found?' do
+    context 'when results have been found' do
+      let(:query) { 'haiku' }
+
+      it 'is true when found' do
+        expect(scraper.found?).to be_true
+      end
     end
 
-    it 'is false when not found' do
-      pending
-      expect(scraper.found).to     be_false
-      expect(scraper.found).to_not be_nil # no false positivies if nil
+    context 'when results haven\'t been found' do
+      let(:query) { 'null' }
+
+      it 'is false when not found' do
+        expect(scraper.found?).to     be_false
+        expect(scraper.found?).to_not be_nil # no false positivies if nil
+      end
     end
   end
 
