@@ -26,6 +26,17 @@ describe Scraper do
     end
   end
 
+  describe '#found?' do
+    it 'is an alias of #found' do
+      expect(scraper.found?).to eq(scraper.found)
+    end
+
+    it 'returns a bool' do
+      expect(scraper.found?).to     be_false
+      expect(scraper.found?).to_not be_nil
+    end
+  end
+
   describe '#found' do
     it 'is true when found' do
       pending
@@ -42,17 +53,6 @@ describe Scraper do
   describe '#results' do
     it 'returns a hash' do
       expect(scraper.results).to be_a(Hash)
-    end
-  end
-
-  describe '#found?' do
-    it 'is an alias of #found' do
-      expect(scraper.found?).to eq(scraper.found)
-    end
-
-    it 'returns a bool' do
-      expect(scraper.found?).to     be_false
-      expect(scraper.found?).to_not be_nil
     end
   end
 
