@@ -41,7 +41,8 @@ describe Scraper do
     context 'when results have been found' do
       let(:query) { 'haiku' }
 
-      it 'is true when found' do
+      it 'is true' do
+        scraper.scrape(url)
         expect(scraper.found?).to be_true
       end
     end
@@ -49,7 +50,8 @@ describe Scraper do
     context 'when results haven\'t been found' do
       let(:query) { 'null' }
 
-      it 'is false when not found' do
+      it 'is false' do
+        scraper.scrape(url)
         expect(scraper.found?).to     be_false
         expect(scraper.found?).to_not be_nil # no false positivies if nil
       end
