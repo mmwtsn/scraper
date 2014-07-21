@@ -22,7 +22,12 @@ class Scraper
     regexp = /#{query}/i
 
     check_url(regexp, url, result)
-    update_and_format_results(result, url)
+    result = format_result(result)
+    @results[url] = result
+
+    update_found(url)
+
+    result
   end
 
   private
@@ -52,5 +57,11 @@ class Scraper
     @results[url] = result
 
     result
+  end
+
+  def update_found(url)
+    unless @results[url] == false
+      @found = true
+    end
   end
 end
