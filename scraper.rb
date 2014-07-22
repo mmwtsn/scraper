@@ -19,9 +19,8 @@ class Scraper
 
   def scrape(url)
     result = []
-    regexp = build_regexp
 
-    check_location(regexp, url, result)
+    check_location(url, result)
     result = format_result(result)
     @results[url] = result
 
@@ -32,14 +31,10 @@ class Scraper
 
   private
 
-  def build_regexp
-    /#{@query}/i
-  end
-
-  def check_location(regexp, url, result)
+  def check_location(url, result)
     open(url) do |f|
       f.each do |line|
-        if regexp =~ line
+        if /#{@query}/i =~ line
           result << f.lineno
         end
       end
@@ -51,8 +46,6 @@ class Scraper
       result = false
     elsif result.length == 1
       result = result[0]
-    else
-      result
     end
   end
 
